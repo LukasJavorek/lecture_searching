@@ -19,8 +19,30 @@ def read_data(file_name, field):
     return data[field]
 
 
+def linear_search(sequence, number):
+    position = []
+    idx = 0
+    for item in sequence:
+        idx = idx + 1
+        if item == number:
+            position.append(idx)
+    count = len(position)
+    
+    # results = {"postions": [],"count": 0}
+    # for index in range(len(numbers)):
+    #   if numbers[index] == number:
+    #       results["positions"].append(index)
+    #       results["count"] = results["count"] + 1
+    # return results
+
+    return {"postions": position, "count": count}
+
+
 def main():
-    print(read_data("sequential.json", "unordered_numbers"))
+    sequence = read_data("sequential.json", "unordered_numbers")
+    print(sequence)
+    number = int(input("Číslo: "))
+    print(linear_search(sequence, number))
 
 
 if __name__ == '__main__':
