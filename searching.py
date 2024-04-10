@@ -21,13 +21,11 @@ def read_data(file_name, field):
 
 def linear_search(sequence, number):
     position = []
-    idx = 0
-    for item in sequence:
-        idx = idx + 1
-        if item == number:
-            position.append(idx)
+    for idx in range(len(sequence)):
+        if sequence[idx] == number:
+            position.append(idx + 1)
     count = len(position)
-    
+
     # results = {"postions": [],"count": 0}
     # for index in range(len(numbers)):
     #   if numbers[index] == number:
@@ -38,11 +36,22 @@ def linear_search(sequence, number):
     return {"postions": position, "count": count}
 
 
+def pattern_search(sequence, pattern):
+    positions = set()
+    for idx in range(len(sequence)):
+        pattern_len = len(pattern)
+        if sequence[idx: idx + pattern_len] == pattern:
+            positions.add(idx + pattern_len // 2 + 1)
+
+    return positions
+
+
 def main():
-    sequence = read_data("sequential.json", "unordered_numbers")
+    sequence = read_data("sequential.json", "dna_sequence")
     print(sequence)
-    number = int(input("Číslo: "))
-    print(linear_search(sequence, number))
+    # number = int(input("Číslo: "))
+    # print(linear_search(sequence, number))
+    print(pattern_search(sequence, "ATA"))
 
 
 if __name__ == '__main__':
